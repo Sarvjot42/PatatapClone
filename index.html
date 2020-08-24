@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Patatap Clone</title>
+    <script type="text/javascript" src="assets/js/lib/paper-full.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/patatap.css">
+    <script type="text/paperscript" canvas="myCanvas">
+
+        function pickRandomColor(){
+            var r=Math.floor(Math.random()*256);
+            var g=Math.floor(Math.random()*256);
+            var b=Math.floor(Math.random()*256);
+
+            
+            return "rgb("+r+", "+g+", "+b+")";
+        }
+        var keyData = {
+            a:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/1.mp3']
+                })
+            },
+            b:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/2.mp3']
+                })
+            },
+            c:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/3.mp3']
+                })
+            },
+            d:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/4.mp3']
+                })
+            },
+            e:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/5.mp3']
+                })
+            },
+            f:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/6.mp3']
+                })
+            },
+            g:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/7.mp3']
+                })
+            },
+            h:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/8.mp3']
+                })
+            },
+            i:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/9.mp3']
+                })
+            },
+            j:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/10.mp3']
+                })
+            },
+            k:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/11.mp3']
+                })
+            },
+            l:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/12.mp3']
+                })
+            },
+            m:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/13.mp3']
+                })
+            },
+            n:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/14.mp3']
+                })
+            },
+            o:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/15.mp3']
+                })
+            },
+            p:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/16.mp3']
+                })
+            },
+            q:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/17.mp3']
+                })
+            },
+            r:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/18.mp3']
+                })
+            },
+            s:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/19.mp3']
+                })
+            },
+            t:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/20.mp3']
+                })
+            },
+            u:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/21.mp3']
+                })
+            },
+            v:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/22.mp3']
+                })
+            },
+            w:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/23.mp3']
+                })
+            },
+            x:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/24.mp3']
+                })
+            },
+            y:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/25.mp3']
+                })
+            },
+            z:{
+                color:pickRandomColor(),
+                soun:new Howl({
+                    src: ['sounds/26.mp3']
+                })
+            }
+
+        }
+        
+
+
+        var circles=[];
+        function onKeyDown(event) {
+            var maxPoint=new Point(view.size.width-100,view.size.height-50)
+            var randomPoint=Point.random();
+            var point=maxPoint*randomPoint;
+            var newCircle = new Path.Circle(point, 100);
+            newCircle.fillColor = keyData[event.key].color;
+            circles.push(newCircle);
+            keyData[event.key].soun.play();
+        }
+        function onFrame(event) {
+            for(var i=0;i<circles.length;i++){    
+                circles[i].scale(.9);
+                circles[i].fillColor.hue += 1;
+                if(circles[i].area < 1){
+                    circles[i].remove(); // remove the circle from the canvas
+                    circles.splice(i, 1); // remove the circle from the array
+                }
+            }
+        }
+        
+        
+    </script>
+</head>
+
+<body>
+    <canvas id="myCanvas" resize></canvas>
+</body>
+
+</html>
